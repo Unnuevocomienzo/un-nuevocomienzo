@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un Nuevo Comienzo</title>
+<meta name="description" content="Hogar de acompañamiento, formación y desarrollo integral para jóvenes que egresan de hogares de protección. Salta Capital.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Nunito+Sans:wght@400;700;800&display=swap">
+<style>
+/* Concepto: sitio de una sola página con menú por secciones. Azul noche + amarillo sol, tomados del manual de marca. */
+:root{--bg:#F4F7FB;--ink:#1B2A4E;--card:#fff;--line:#C9D5EA;--sun:#F5B335;--sun-ink:#1B2A4E;--green:#1F7A5A;--green-ink:#fff;--muted:#41507A;--head:#1B2A4E;--head-ink:#fff;--bad:#A12B2B;--fs:18px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1830;--ink:#EEF2FB;--card:#18244A;--line:#34447A;--muted:#B9C5E4;--head:#0A1226;--bad:#FF9C9C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1830;--ink:#EEF2FB;--card:#18244A;--line:#34447A;--muted:#B9C5E4;--head:#0A1226;--bad:#FF9C9C;color-scheme:dark}
+body.hc{--bg:#000;--ink:#fff;--card:#000;--line:#fff;--muted:#fff;--head:#000;--head-ink:#fff;--sun:#FFE14D;--green:#00A86B;color-scheme:dark}
+*{box-sizing:border-box}
+html{font-size:var(--fs)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito Sans',system-ui,sans-serif;line-height:1.5}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;line-height:1.1;margin:0 0 .5rem;text-wrap:balance}
+h1{font-size:clamp(2.2rem,7vw,3.8rem);font-weight:800}
+h2{font-size:clamp(1.6rem,4.5vw,2.3rem);font-weight:800}
+h3{font-size:1.25rem;font-weight:700}
+a{color:inherit}
+.wrap{max-width:1000px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.skip{position:absolute;left:-999px;top:0;background:var(--sun);color:var(--sun-ink);padding:.6rem 1rem;z-index:50}
+.skip:focus{left:8px;top:8px}
+:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+header.top{background:var(--head);color:var(--head-ink)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:.75rem 1.25rem;padding-block:.8rem}
+.brand{display:flex;align-items:center;gap:.6rem;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1.3rem;text-decoration:none;color:var(--head-ink)}
+.brand img{height:44px;width:auto;display:block}
+.tools{margin-left:auto;display:flex;gap:.4rem}
+.tools button{background:transparent;color:var(--head-ink);border:2px solid currentColor;border-radius:.6rem;padding:.35rem .7rem;font:inherit;font-weight:800;cursor:pointer;min-height:44px;min-width:44px}
+nav{width:100%}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem}
+nav a{display:block;padding:.5rem .8rem;border-radius:.6rem;text-decoration:none;color:var(--head-ink);font-weight:700;border:2px solid transparent}
+nav a[aria-current="page"]{background:var(--sun);color:var(--sun-ink)}
+nav a:hover{border-color:var(--sun)}
+.page{display:none;padding-block:2.2rem 3rem}
+.page.on{display:block}
+.hero{background:radial-gradient(circle at 92% 108%,rgba(245,179,53,.28),rgba(245,179,53,0) 46%),linear-gradient(135deg,#1B2A4E,#24396B);color:#fff;border-radius:1.2rem;padding:clamp(1.6rem,6vw,3.5rem)}
+.plan{background:var(--card);border:2px solid var(--line);border-radius:.8rem;margin:.6rem 0;padding:.2rem 1rem}.plan summary{cursor:pointer;padding:.7rem 0;font-size:1.05rem}.plan summary:focus-visible{outline:3px solid var(--sun);outline-offset:2px}.plan ol{margin:.2rem 0 .8rem;padding-left:1.2rem}.plan li{margin:.45rem 0}
+.vs{margin:.6rem 0}.vs h4{margin:.8rem 0 .2rem;color:var(--muted);font-size:.9rem;text-transform:uppercase;letter-spacing:.05em}.ln{margin:.15rem 0;padding:.25rem .6rem;border-left:4px solid transparent;border-radius:.4rem;transition:background .2s}.ln.on{background:var(--sun);color:var(--sun-ink);border-left-color:var(--green);font-weight:800}
+.hero{display:flow-root}.hlogo{float:right;width:min(260px,100%);margin:0 0 1rem 1.5rem;position:relative;border-radius:1rem;overflow:hidden;border:2px solid rgba(255,255,255,.25);background:#1B2A4E}.hlogo video{display:block;width:100%;height:auto}.hlogo button{position:absolute;right:.6rem;bottom:.6rem;width:46px;height:46px;background:#F5B335;color:#1B2A4E;border:0;border-radius:50%;padding:0;font:800 1.05rem 'Nunito Sans',sans-serif;cursor:pointer;line-height:1}.hlogo button:focus-visible{outline:3px solid #fff;outline-offset:2px}@media(max-width:640px){.hlogo{float:none;margin:0 auto 1rem}}
+.hero p{max-width:40rem;font-size:1.15rem;color:#E6ECF8}
+.eyebrow{color:var(--sun);font-weight:800;margin:0 0 .4rem}
+.btn{display:inline-block;background:var(--sun);color:var(--sun-ink);font-weight:800;border:2px solid var(--sun);border-radius:.7rem;padding:.7rem 1.2rem;text-decoration:none;cursor:pointer;font:inherit;font-weight:800;min-height:48px}
+.btn.alt{background:transparent;color:inherit;border-color:currentColor}
+.btn.go{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.row{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem;margin-top:1.2rem}
+.card{background:var(--card);border:2px solid var(--line);border-radius:1rem;padding:1.2rem;min-width:0}
+.card p,.card ul{margin:.3rem 0}
+.muted{color:var(--muted)}
+.pill{display:inline-block;background:var(--sun);color:var(--sun-ink);border-radius:999px;padding:.1rem .7rem;font-weight:800;font-size:.85rem}
+.embed{position:relative;aspect-ratio:16/9;background:var(--card);border:2px solid var(--line);border-radius:1rem;overflow:hidden;max-width:100%}
+.embed.tall{aspect-ratio:auto;height:560px}
+.embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.embed .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:1rem;color:var(--muted);font-weight:700}
+figure{margin:0}
+figure img{display:block;width:100%;height:auto;border-radius:.8rem;border:2px solid var(--line)}
+figcaption{margin-top:.4rem;color:var(--muted);font-size:.9rem}
+.sec{margin-top:2.4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;list-style:none}
+.chips li{background:var(--card);border:2px solid var(--line);border-radius:999px;padding:.35rem .9rem;font-weight:700}
+label{display:block;font-weight:800;margin:.8rem 0 .25rem}
+input[type=number]{width:100%;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:.7rem;padding:.6rem .8rem;font:inherit;min-height:48px}
+.big{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(2.4rem,9vw,3.8rem);font-variant-numeric:tabular-nums;line-height:1}
+#board{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+@media(min-width:560px){#board{grid-template-columns:repeat(4,1fr)}}
+.mc{min-height:84px;border-radius:.8rem;border:2px solid var(--line);background:var(--head);color:var(--sun);font:800 1.6rem 'Nunito Sans',sans-serif;padding:.4rem;cursor:pointer}
+.mc.up,.mc.done{background:var(--card);color:var(--ink);font-size:1rem}
+.mc.done{border-color:var(--green);color:var(--green)}
+.opt{display:block;width:100%;text-align:left;background:var(--bg);color:var(--ink);border:2px solid var(--line);border-radius:.7rem;padding:.7rem .9rem;margin:.5rem 0;font:inherit;font-weight:700;cursor:pointer;min-height:48px}
+.opt.ok{background:var(--green);border-color:var(--green);color:var(--green-ink)}
+.opt.no{border-color:var(--bad)}
+.res{margin-top:.9rem;padding:.8rem 1rem;border-radius:.7rem;border:2px solid var(--line);font-weight:700}
+.res.ok{border-color:var(--green)}.res.no{border-color:var(--bad)}
+pre{white-space:pre-wrap;background:var(--card);border:2px solid var(--line);border-radius:.8rem;padding:1rem;font:.95rem/1.5 ui-monospace,Menlo,Consolas,monospace;overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border:2px solid var(--line);padding:.55rem .7rem;text-align:left;vertical-align:top}
+.scroll{overflow-x:auto}
+footer{background:var(--head);color:var(--head-ink);padding-block:2rem}
+footer a{color:var(--sun)}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top">
+<div class="wrap bar">
+<a class="brand" href="#inicio"><img id="logo" src="logo.png" alt="Logo de Un Nuevo Comienzo" onerror="this.remove()"><span>Un Nuevo Comienzo</span></a>
+<div class="tools" role="group" aria-label="Opciones de accesibilidad">
+<button id="fs-" type="button" aria-label="Achicar letra">A-</button>
+<button id="fs+" type="button" aria-label="Agrandar letra">A+</button>
+<button id="hc" type="button" aria-pressed="false" aria-label="Alto contraste">Contraste</button>
+</div>
+<nav aria-label="Menú principal"><ul id="menu"></ul></nav>
+</div>
+</header>
+
+<main id="main" class="wrap" tabindex="-1">
+
+<section class="page" id="inicio" data-title="Inicio">
+<div class="hero">
+<div class="hlogo"><video id="logoVid" src="logo-animado.mp4" poster="logo-animado-poster.jpg" playsinline preload="metadata" aria-label="Animación del logo de Un Nuevo Comienzo: un sol que nace sobre el horizonte"></video><button type="button" id="logoBtn" aria-label="Reproducir la animación del logo con sonido">▶</button></div>
+<p class="eyebrow">Salta Capital · Proyecto en etapa de creación</p>
+<h1>Un Nuevo Comienzo</h1>
+<p>Un hogar de acompañamiento, formación y desarrollo integral para jóvenes que egresan de hogares de protección. Un lugar para crecer, aprender, descubrirse y construir un futuro propio.</p>
+<div class="row"><a class="btn" href="#quienes">Conocé el proyecto</a><a class="btn alt" href="#contacto">Sumate</a></div>
+</div>
+<div class="grid">
+<div class="card"><h3>Formación en oficios</h3><p>Carpintería, informática, costura, huerta y gastronomía, y perfumería artesanal, con salida laboral.</p></div>
+<div class="card"><h3>Acompañamiento integral</h3><p>Salud, nutrición, psicología, estudios y orientación para construir un proyecto de vida.</p></div>
+<div class="card"><h3>Sumate</h3><p>Si sos profesional, docente, empresa o vecino, tu tiempo y tus conocimientos pueden cambiar un comienzo.</p></div>
+</div>
+<div class="sec"><h2>Mirá el video</h2><div class="embed" data-video="video1" data-title="Conocé Un Nuevo Comienzo"></div></div>
+</section>
+
+<section class="page" id="quienes" data-title="Quiénes somos">
+<h1>Quiénes somos</h1>
+<p>Un Nuevo Comienzo es un proyecto que propone crear un hogar de acompañamiento, formación y desarrollo integral para jóvenes mayores de 18 años que egresan de hogares de protección en Salta.</p>
+<p>Al cumplir la mayoría de edad, muchos de ellos llegan sin una red familiar de contención, sin recursos para vivir de forma independiente y sin formación laboral. Queremos ofrecerles algo más que un lugar donde vivir: oportunidades, conocimientos y la posibilidad de sentirse parte de una comunidad que cree en ellos.</p>
+<p>El proyecto está en etapa de creación y busca sumar profesionales, empresas, instituciones y vecinos. Esta web es el trabajo final de la Tecnicatura Superior en Locución Integral del IES N° 6053 “Abuelas de Plaza de Mayo”, de Salta.</p>
+<div class="grid">
+<div><h2>Conocé el proyecto</h2><div class="embed" data-video="video1" data-title="Presentación del proyecto"></div><p class="muted">Un recorrido por el proyecto.</p></div>
+<div><h2>Quién lo hizo</h2><div class="embed" data-video="video2" data-title="Presentación de la autora"></div><p class="muted">Soy Marcela Mora y te cuento de qué trata esta web.</p></div>
+</div>
+<div class="sec"><h2>Qué ofrece</h2>
+<div class="grid">
+<div class="card"><h3>Talleres de oficios</h3><p>Carpintería <span class="pill">3 meses</span></p><p>Informática <span class="pill">2 meses</span></p><p>Costura <span class="pill">3 meses</span></p><p>Huerta y gastronomía <span class="pill">4 meses</span></p><p>Perfumería y jabones autóctonos <span class="pill">2 meses</span></p></div>
+<div class="card"><h3>Educación y desarrollo personal</h3><ul><li>Alfabetización y apoyo escolar</li><li>Educación financiera</li><li>Orientación vocacional y laboral</li><li>Currículum y entrevistas</li><li>Comunicación y expresión oral</li><li>Habilidades sociales</li></ul></div>
+<div class="card"><h3>Acompañamiento</h3><ul class="chips"><li>Salud física</li><li>Nutrición</li><li>Salud emocional</li><li>Aprendizaje</li><li>Trabajo social</li><li>Actividad física</li><li>Desarrollo personal</li></ul></div>
+</div>
+<p class="muted">Las duraciones son una propuesta y se ajustarán con los profesionales que se sumen.</p></div>
+</section>
+
+<section class="page" id="recursos" data-title="Recursos">
+<h1>Recursos de Google Drive</h1>
+<p>Acá encontrás los planes de estudio de los talleres y el material del proyecto: una propuesta, una presentación y las planillas de trabajo.</p>
+<div class="sec"><h2>Planes de estudio de los talleres</h2>
+<p>Cada taller tiene 4 módulos. Se cursa dos veces por semana, con un 80 % de práctica en el taller y un 20 % de teoría aplicada y educación financiera básica. Está pensado para jóvenes desde los 18 años que egresan de hogares de protección.</p>
+<details class="plan"><summary><strong>Carpintería</strong> <span class="muted">· 3 meses · 24 clases</span></summary><ol><li><strong>Módulo 1.</strong> Seguridad e higiene en el taller; reconocimiento de maderas nativas (pino, roble y maderas recicladas); uso de herramientas manuales y eléctricas.</li><li><strong>Módulo 2.</strong> Técnicas de medición, corte, unión y armado de estructuras básicas.</li><li><strong>Módulo 3.</strong> Restauración de muebles y fabricación de objetos utilitarios de alta demanda: estantes, organizadores, cajones y mesitas.</li><li><strong>Módulo 4.</strong> Acabados, lijado, pintura y barnizado; nociones básicas de presupuestos y comercialización.</li></ol></details>
+<details class="plan"><summary><strong>Informática</strong> <span class="muted">· 2 meses · 16 clases</span></summary><ol><li><strong>Módulo 1.</strong> Alfabetización digital avanzada: sistemas operativos, archivos en la nube y seguridad informática básica.</li><li><strong>Módulo 2.</strong> Ofimática práctica: procesadores de texto y planillas de cálculo (presupuestos) y armado de currículum.</li><li><strong>Módulo 3.</strong> Herramientas de comunicación laboral y gestión del correo electrónico.</li><li><strong>Módulo 4.</strong> Introducción al marketing digital y uso estratégico de redes sociales para buscar trabajo o promover emprendimientos propios.</li></ol></details>
+<details class="plan"><summary><strong>Costura</strong> <span class="muted">· 3 meses · 24 clases</span></summary><ol><li><strong>Módulo 1.</strong> Introducción a la máquina de coser (familiar, recta y overlock); reconocimiento de telas, hilos y agujas.</li><li><strong>Módulo 2.</strong> Toma de medidas, moldería básica y patronaje de prendas.</li><li><strong>Módulo 3.</strong> Confección de prendas utilitarias y arreglos de ropa: reparaciones, dobladillos y colocación de cierres y avíos.</li><li><strong>Módulo 4.</strong> Diseño y producción de productos textiles de salida comercial rápida: bolsos ecológicos, delantales, cartucheras y ropa blanca.</li></ol></details>
+<details class="plan"><summary><strong>Huerta y gastronomía</strong> <span class="muted">· 4 meses · 32 clases</span></summary><ol><li><strong>Módulo 1.</strong> Huerta: preparación de la tierra, siembra de temporada, riego, abono orgánico, control biológico de plagas y cosecha de verduras y aromáticas locales.</li><li><strong>Módulo 2.</strong> Gastronomía tradicional: platos típicos salteños (empanadas, humitas y locro) con técnicas de cocina e higiene bromatológica.</li><li><strong>Módulo 3.</strong> Cocina saludable: menús balanceados, cocina baja en calorías y aprovechamiento de productos frescos de la huerta.</li><li><strong>Módulo 4.</strong> Costos de producción, manipulación higiénica de alimentos y armado de viandas para venta directa o emprendimientos gastronómicos.</li></ol></details>
+<details class="plan"><summary><strong>Perfumería y jabones autóctonos</strong> <span class="muted">· 2 meses · 16 clases</span></summary><ol><li><strong>Módulo 1.</strong> Introducción a la cosmética natural artesanal; propiedades de aceites vegetales, bases de glicerina y materias primas regionales.</li><li><strong>Módulo 2.</strong> Jabones de tocador artesanales con elementos de la flora salteña (jarilla, muña-muña, arcillas regionales y esencias florales).</li><li><strong>Módulo 3.</strong> Perfumes, colonias y esencias botánicas con técnicas de maceración y combinación de aromas.</li><li><strong>Módulo 4.</strong> Empaque sostenible, diseño de etiquetas, presentación del producto y estrategias de comercialización artesanal.</li></ol></details>
+<p class="muted">Propuesta en etapa de creación: los contenidos y la duración pueden ajustarse con los profesionales y docentes que se sumen.</p></div>
+<div class="sec"><h2>Propuesta del proyecto (Documento)</h2><div class="embed tall" data-url="doc" data-title="Documento de Google"></div></div>
+<div class="sec"><h2>Presentación (Slides)</h2><div class="embed" data-url="slides" data-title="Presentación de Google"></div></div>
+<div class="sec"><h2>Cronograma y presupuesto (Planilla)</h2><div class="embed tall" data-url="sheets" data-title="Planilla de Google"></div></div>
+</section>
+
+<section class="page" id="galeria" data-title="Galería de videos">
+<h1>Galería de videos</h1>
+<p>Mirá los videos del proyecto.</p>
+<div class="grid">
+<div><h3>Un nuevo comienzo</h3><div class="embed" data-video="g1" data-title="Un nuevo comienzo"></div></div>
+<div><h3>¿Qué pasa a los 18?</h3><div class="embed" data-video="g2" data-title="¿Qué pasa a los 18?"></div></div>
+<div><h3>Por qué lo hago</h3><div class="embed" data-video="g3" data-title="Por qué lo hago"></div></div>
+<div><h3>Sumate</h3><div class="embed" data-video="g4" data-title="Sumate"></div></div>
+</div>
+<h2 style="margin-top:2rem">Spots de audio</h2>
+<p>Escuchá los dos spots del proyecto. Debajo de cada uno está el texto, para leerlo.</p>
+<div class="grid">
+<div class="card"><h3>Spot 1: Un nuevo comienzo</h3><audio controls preload="none" src="audio/spot-1.mp3" style="width:100%">Tu navegador no puede reproducir audio.</audio>
+<details><summary>Leer el texto</summary><p>Cumplís dieciocho años. Para muchos, es motivo de festejo. Para los jóvenes que viven en hogares de protección, también es el día en que tienen que irse. Muchos salen sin una familia que los espere, sin un lugar donde vivir y sin un oficio. Por eso nace Un Nuevo Comienzo: un hogar para aprender, cuidarse y construir un futuro propio, acá, en Salta. Conocelo. Entrá a la web y sumate.</p></details></div>
+<div class="card"><h3>Spot 2: Sumate</h3><audio controls preload="none" src="audio/spot-2.mp3" style="width:100%">Tu navegador no puede reproducir audio.</audio>
+<details><summary>Leer el texto</summary><p>¿Sabés carpintería? ¿Cocinás? ¿Enseñás? ¿Tenés un comercio o una empresa? Una hora de tu tiempo puede cambiarle el comienzo a un joven de Salta. Un Nuevo Comienzo busca profesionales, docentes, empresas y vecinos que quieran ayudar. Entrá a la web, completá el formulario y sumate.</p></details></div>
+</div>
+<h2 style="margin-top:2rem">La canción</h2>
+<p>Versión instrumental de la canción institucional de Un Nuevo Comienzo, con la letra para seguirla mientras suena. La música es de estilo folk suave, con guitarra y flauta. Se resalta cada verso cuando le toca.</p>
+<div class="card"><h3>Un nuevo comienzo</h3><audio id="song" controls preload="none" src="audio/cancion.mp3" style="width:100%">Tu navegador no puede reproducir audio.</audio>
+<details open><summary>Letra</summary><div id="letra"><div class="vs"><h4>Estrofa 1</h4><p class="ln" data-t="13.43">Cumplí dieciocho y la puerta se abrió,</p><p class="ln" data-t="19.14">no había nadie esperando atrás,</p><p class="ln" data-t="24.86">pero hay un lugar donde el sol se asomó</p><p class="ln" data-t="30.57">y alguien me dice: «Vení, pasá».</p></div><div class="vs"><h4>Estrofa 2</h4><p class="ln" data-t="36.29">Siembro la tierra, doy forma a la madera,</p><p class="ln" data-t="42.0">coso mi historia con hilo y valor,</p><p class="ln" data-t="47.71">cada mañana es una primavera</p><p class="ln" data-t="53.43">y cada paso me abraza el sol.</p></div><div class="vs"><h4>Estribillo</h4><p class="ln" data-t="59.14">Es un nuevo comienzo, la vida empieza hoy,</p><p class="ln" data-t="64.86">manos que aprenden, sueños que van.</p><p class="ln" data-t="70.57">No estoy solo, tengo mi voz,</p><p class="ln" data-t="76.29">construyo el camino, ya sé adónde voy.</p></div><div class="vs"><h4>Puente</h4><p class="ln" data-t="82.0">Detrás de cada historia hay un talento,</p><p class="ln" data-t="87.71">detrás de cada ausencia, un porvenir.</p><p class="ln" data-t="93.43">Si alguien te tiende la mano a tiempo,</p><p class="ln" data-t="99.14">el futuro se anima a sonreír.</p></div><div class="vs"><h4>Estribillo</h4><p class="ln" data-t="104.86">Es un nuevo comienzo, la vida empieza hoy,</p><p class="ln" data-t="110.57">manos que aprenden, sueños que van.</p><p class="ln" data-t="116.29">No estoy solo, tengo mi voz,</p><p class="ln" data-t="122.0">construyo el camino, ya sé adónde voy.</p></div></div></details></div>
+</section>
+
+<section class="page" id="agenda" data-title="Agenda">
+<h1>Agenda</h1>
+<p>Actividades previstas del proyecto. Las fechas son una propuesta y pueden cambiar.</p>
+<div class="embed tall" data-url="calendar" data-title="Calendario de actividades"></div>
+<div class="sec"><h2>Próximas actividades</h2>
+<div class="scroll"><table><thead><tr><th>Fecha</th><th>Hora</th><th>Actividad</th></tr></thead><tbody>
+<tr><td>26 de noviembre de 2026</td><td>18:00</td><td>Encuentro de presentación del proyecto</td></tr>
+<tr><td>1 de diciembre de 2026</td><td>18:00</td><td>Convocatoria a profesionales de la salud y la educación</td></tr>
+<tr><td>3 de diciembre de 2026</td><td>10:00</td><td>Taller de muestra: huerta y cocina regional</td></tr>
+<tr><td>9 de diciembre de 2026</td><td>18:30</td><td>Encuentro con empresas y comercios</td></tr>
+<tr><td>12 de diciembre de 2026</td><td>10:00</td><td>Jornada de voluntariado: carpintería y costura</td></tr>
+<tr><td>17 de diciembre de 2026</td><td>18:00</td><td>Charla abierta: ¿Qué pasa a los 18?</td></tr>
+</tbody></table></div></div>
+</section>
+
+<section class="page" id="ubicacion" data-title="Ubicación">
+<h1>Ubicación</h1>
+<p>Zona de trabajo proyectada: Salta Capital. La sede todavía está en etapa de definición; cuando exista, se va a indicar acá.</p>
+<div class="embed tall" data-map="1" data-title="Mapa de Salta Capital"></div>
+</section>
+
+<section class="page" id="contacto" data-title="Contacto">
+<h1>Contacto</h1>
+<p>¿Querés sumarte o tener más información? Escribinos. Este formulario es para adultos que quieran colaborar.</p>
+<div class="embed tall" data-url="form" data-title="Formulario de contacto"></div>
+<p id="contact-line" class="muted"></p>
+</section>
+
+<section class="page" id="juegos" data-title="Juegos y herramientas">
+<h1>Juegos y herramientas</h1>
+<p class="row" style="align-items:center"><button type="button" class="btn alt" id="snd" aria-pressed="true">Sonido: activado</button></p>
+<div class="sec"><h2>Infografías</h2>
+<div class="grid">
+<figure><img src="infografia-18.png" alt="Infografía “¿Qué pasa a los 18?”. Al cumplir 18 años, muchos jóvenes egresan del sistema de cuidado sin una red familiar, sin recursos para vivir de forma independiente y sin formación laboral ni herramientas emocionales. Un Nuevo Comienzo responde con hogar seguro, formación en oficios, salud y acompañamiento, e inserción laboral." onerror="this.alt='Falta el archivo infografia-18.png';this.style.minHeight='80px'"><figcaption>¿Qué pasa a los 18?</figcaption></figure>
+<figure><img src="infografia-talleres.png" alt="Infografía “Un lugar para crecer”. Talleres de carpintería (3 meses), informática (2), costura (3), huerta y gastronomía (4) y perfumería y jabones (2). Cursos de educación y desarrollo personal. Áreas de acompañamiento: salud física, nutrición, salud emocional, aprendizaje, trabajo social, actividad física y desarrollo personal y espiritual." onerror="this.alt='Falta el archivo infografia-talleres.png';this.style.minHeight='80px'"><figcaption>Un lugar para crecer</figcaption></figure>
+</div></div>
+
+<div class="sec"><h2>Juego 1: memotest de oficios</h2>
+<p class="muted">Encontrá cada oficio con lo que se puede hacer con él.</p>
+<div class="row" style="align-items:center"><span id="stat" aria-live="polite">Intentos: 0</span><button class="btn go" id="again" type="button">Reiniciar</button></div>
+<div id="board" style="margin-top:.8rem"></div><div id="msg" class="res" aria-live="polite" hidden></div></div>
+
+<div class="sec"><h2>Juego 2: trivia del nuevo comienzo</h2>
+<div class="card" id="quiz"></div></div>
+
+<div class="sec"><h2>Herramientas</h2>
+<div class="grid">
+<div class="card"><h3>Reloj de Salta</h3><p class="muted" id="fecha"></p><div class="big" id="hora" aria-hidden="true">--:--:--</div></div>
+<div class="card"><h3>Temporizador de estudio</h3><label for="min">Minutos</label><input id="min" type="number" min="1" max="120" value="25" inputmode="numeric"><div class="big" id="cuenta" style="margin:.8rem 0" role="timer" aria-live="off">25:00</div><div class="row" style="margin-top:0"><button class="btn go" id="ini" type="button">Empezar</button><button class="btn alt" id="rei" type="button">Reiniciar</button></div><div id="fin" class="res ok" role="status" hidden>¡Terminó el tiempo! Tomate un descanso.</div></div>
+<div class="card"><h3>Clima en Salta</h3><p class="muted" id="clTxt">Cargando el clima…</p><div class="big" id="clTemp" aria-live="polite">--°</div><p id="clDet" class="muted"></p><div class="row" style="margin-top:.6rem"><button class="btn alt" id="clBtn" type="button">Actualizar</button></div></div>
+</div></div>
+</section>
+
+<section class="page" id="accesibilidad" data-title="Accesibilidad">
+<h1>Accesibilidad</h1>
+<p>Esta web busca ser fácil de usar para todas las personas.</p>
+<div class="grid">
+<div class="card"><h3>En este sitio</h3><ul><li>Botones <strong>A-</strong> y <strong>A+</strong> para cambiar el tamaño de la letra.</li><li>Botón <strong>Contraste</strong> para pasar a alto contraste.</li><li>Enlace para saltar directo al contenido.</li><li>Se puede usar completo con el teclado.</li><li>Se adapta a celular, tablet y computadora.</li></ul></div>
+<div class="card"><h3>En los videos y las imágenes</h3><ul><li>Todos los videos tienen subtítulos.</li><li>Las imágenes y las infografías tienen descripción escrita para lectores de pantalla.</li><li>Los colores tienen buen contraste.</li></ul></div>
+</div>
+</section>
+
+<section class="page" id="bitacora" data-title="Bitácora de IA">
+<h1>Bitácora de IA y prompts</h1>
+<p>La IA propone; la autora cura, depura y edita. Acá se documenta cómo se trabajó con inteligencia artificial.</p>
+<h2>Prompt Madre</h2>
+<pre>[ROL / IDENTIDAD]: Actúa como el Director de Comunicación y Estratega Transmedia Senior de Un Nuevo Comienzo, hogar de acompañamiento, formación y desarrollo integral para jóvenes que egresan de hogares de protección, en Salta Capital.
+
+[CONTEXTO Y AUDIENCIA]: El cliente opera en el rubro de acción social y formación sociolaboral en Salta Capital, Salta. Su público principal son personas de 18 a 25 años que buscan contención, formación en oficios y oportunidades laborales. Su público de apoyo son profesionales, empresas, organismos públicos y vecinos que buscan formas concretas de colaborar.
+
+[TONO Y VALORES]: Tu estilo comunicacional es cercano, esperanzador, educativo y respetuoso. Los valores innegociables de la marca son la dignidad de cada joven, el respeto, la solidaridad, la responsabilidad y la cooperación. Nunca uses lenguaje de lástima ni expongas datos que identifiquen a una persona.
+
+[MATRIZ DE FORMATOS]: Generarás estructuras para: 1. Guiones audiovisuales a dos columnas (Imagen/Audio); 2. Scripts para spots sonoros; 3. Microcopys UX y código/estructura HTML/CSS para el portafolio web; 4. Copys persuasivos para redes sociales.
+
+[REGLAS Y RESTRICCIONES]: Evita clichés genéricos. Incorpora modismos locales adecuados (voseo salteño). Cada propuesta debe incluir una Llamada a la Acción (CTA) clara. No inventes datos, cifras ni testimonios.
+
+[COMANDO DE ACTIVACIÓN]: Espera mis instrucciones. Responde confirmando recepción mediante el Resumen Ejecutivo de la marca.</pre>
+<h2>Prompts derivados</h2>
+<ul><li>Copy de Instagram de 40 palabras para convocar a nutricionistas voluntarios, con llamada a la acción.</li><li>Guion a dos columnas de un spot radial de 30 segundos para convocar a empresas.</li><li>Microcopy del botón y del mensaje de confirmación del formulario de contacto.</li></ul>
+<h2>Qué se cambió o se descartó</h2>
+<ul><li>Se descartó el video testimonial: se reemplazó por el Reel “Por qué lo hago”, a cámara.</li><li>Se redujo la cantidad de Reels a 4 y el cronograma a 4 semanas, como pide la cátedra.</li><li>Los números de las metas son una propuesta y se validan con datos reales.</li></ul>
+</section>
+
+<section class="page" id="equipo" data-title="Equipo">
+<h1>Equipo</h1>
+<div class="card"><h2>Marcela Mora</h2>
+<p>Estudiante de la Tecnicatura Superior en Locución Integral del IES N° 6053 “Abuelas de Plaza de Mayo”, de Salta.</p>
+<p>En este proyecto me ocupé de la estrategia, la producción audiovisual y sonora, y el diseño y la programación web, trabajando con IA generativa y revisando todo lo que produjo.</p>
+<div class="row" id="links"></div></div>
+</section>
+
+</main>
+
+<footer>
+<div class="wrap">
+<p><strong>Un Nuevo Comienzo</strong> · Salta Capital, Argentina</p>
+<p id="foot-contact"></p>
+<p>© 2026 Un Nuevo Comienzo. Proyecto estudiantil del IES N° 6053 “Abuelas de Plaza de Mayo”. Licencia: [a confirmar con el profesor].</p>
+</div>
+</footer>
+
+<script>
+/* ===== CONFIGURACIÓN: completá solo esta parte ===== */
+var CONFIG={
+ /* Videos de YouTube: pegá el ID (lo que va después de v=) o el enlace completo */
+ video1:"1uHRGhPH82A", video2:"zAli5xfhqYA", g1:"gjYOs3v8_ps", g2:"FDxu7RQFQKw", g3:"zLaeOFT8hu8", g4:"JBws1Ykwy5U",
+ /* Google Drive, Calendar y Forms: pegá la URL que aparece en src="..." del código de Insertar */
+ doc:"https://docs.google.com/document/d/e/2PACX-1vTCkYUdfhp-H5qwny8vpwJjKuel95fNdh8-5faH_9TOAnCye6uUivPsNJXgmBIXd2QBwVDhTgy1nCFh/pub?embedded=true", slides:"https://docs.google.com/presentation/d/e/2PACX-1vTnQSYLM3J2cLJWOkOKgcZx3KNBUfqAWKFuCLPo1BhiQ8yhV_e8gUWGnGU_ySWe2UFVrsWZkoFlmAyE/pubembed?start=false&loop=false&delayms=3600000",
+sheets:"https://docs.google.com/spreadsheets/d/e/2PACX-1vQJxm6gSVLi3ttN9vOKCsnmSMOFAKPu_RyJrXgCSA_hC8qnRkl38BJSzdcPMxsJSDq1FP91QKiCVyxz/pubhtml?widget=true&headers=false", calendar:"https://calendar.google.com/calendar/embed?src=3ebf834cf35abfb35c17e03c59d199a497b03133b9a6650d781331692100adb0%40group.calendar.google.com&ctz=America%2FArgentina%2FSalta", form:"https://docs.google.com/forms/d/e/1FAIpQLSfBfQqsDdtQcMiHBpvafNXr_c0JPv5gzpRZRUe4geLviB9X7A/viewform?embedded=true",
+ mapa:"https://www.google.com/maps/embed?pb=!4v1794773232717!6m8!1m7!1shRHqqsr5PL9o9PJvML5BSA!2m2!1d-24.79166012024145!2d-65.40225341890621!3f190.72565240888207!4f-12.536912313176003!5f0.7820865974627469",
+ correo:"morattrai@gmail.com", instagram:"unnuevocomienzo_nc",
+
+ github:"https://github.com/Unnuevocomienzo/un-nuevocomienzo", behance:"https://www.behance.net/unnuevocomienzo", linkedin:"https://www.linkedin.com/in/unnuevocomienzo-331109450/"
+};
+
+/* ===================================================== */
+function $(i){return document.getElementById(i)}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+/* Menú y páginas */
+var pages=[].slice.call(document.querySelectorAll('.page'));
+var menu=$('menu');
+pages.forEach(function(p){var li=document.createElement('li');var a=document.createElement('a');a.href='#'+p.id;a.textContent=p.dataset.title;a.dataset.p=p.id;li.appendChild(a);menu.appendChild(li)});
+function show(){var id=(location.hash||'#inicio').slice(1);if(!$(id)||!$(id).classList.contains('page'))id='inicio';
+ pages.forEach(function(p){p.classList.toggle('on',p.id===id)});
+ [].forEach.call(menu.querySelectorAll('a'),function(a){if(a.dataset.p===id)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
+ document.title=(id==='inicio'?'Un Nuevo Comienzo':$(id).dataset.title+' | Un Nuevo Comienzo');window.scrollTo(0,0)}
+window.addEventListener('hashchange',show);show();
+
+/* Incrustados */
+function ytUrl(v){if(!v)return'';if(v.indexOf('http')===0){var m=v.match(/(?:v=|youtu\.be\/|embed\/)([\w-]{6,})/);return m?'https://www.youtube.com/embed/'+m[1]:v}return'https://www.youtube.com/embed/'+v}
+function mapUrl(q){if(q.indexOf('http')===0)return q;return'https://www.google.com/maps?q='+encodeURIComponent(q)+'&output=embed'}
+function calUrl(v){if(!v)return'';if(v.indexOf('http')===0)return v;return'https://calendar.google.com/calendar/embed?src='+encodeURIComponent(v)+'&ctz=America%2FArgentina%2FSalta'}
+[].forEach.call(document.querySelectorAll('.embed'),function(el){
+ var src='';
+ if(el.dataset.video)src=ytUrl(CONFIG[el.dataset.video]);
+ else if(el.dataset.map)src=mapUrl(CONFIG.mapa);
+ else if(el.dataset.url==='calendar')src=calUrl(CONFIG.calendar);
+ else if(el.dataset.url)src=CONFIG[el.dataset.url];
+ if(src){var f=document.createElement('iframe');f.src=src;f.title=el.dataset.title||'Contenido incrustado';f.loading='lazy';f.allowFullscreen=true;el.appendChild(f)}
+ else{var d=document.createElement('div');d.className='ph';d.textContent='Falta cargar: '+(el.dataset.title||'contenido')+' (ver CONFIG al final de index.html)';el.appendChild(d)}
+});
+var cl=$('contact-line'),fc=$('foot-contact');
+if(CONFIG.correo){cl.textContent='También podés escribir a '+CONFIG.correo;fc.textContent='Contacto: '+CONFIG.correo+(CONFIG.instagram?' · Instagram: '+CONFIG.instagram:'')}
+var ln=$('links');[['GitHub',CONFIG.github],['Behance',CONFIG.behance],['LinkedIn',CONFIG.linkedin]].forEach(function(x){if(!x[1])return;var a=document.createElement('a');a.className='btn alt';a.textContent=x[0];a.href=x[1];a.target='_blank';a.rel='noopener';ln.appendChild(a)});/*
+/* Accesibilidad: tamaño de letra y contraste */
+var fs=parseInt(store('fs')||'18',10);function applyFs(){fs=Math.max(14,Math.min(26,fs));document.documentElement.style.setProperty('--fs',fs+'px');store('fs',String(fs))}
+$('fs-').addEventListener('click',function(){fs-=2;applyFs()});$('fs+').addEventListener('click',function(){fs+=2;applyFs()});applyFs();
+function applyHc(on){document.body.classList.toggle('hc',on);$('hc').setAttribute('aria-pressed',String(on));store('hc',on?'1':'0')}
+$('hc').addEventListener('click',function(){applyHc(!document.body.classList.contains('hc'))});applyHc(store('hc')==='1');
+
+/* Sonidos y destellos de los juegos (Web Audio, sin archivos) */
+var AC=null,sndOn=true;try{sndOn=localStorage.getItem('snd')!=='0'}catch(e){}
+function ctx(){try{if(!AC)AC=new(window.AudioContext||window.webkitAudioContext)();if(AC.state==='suspended')AC.resume();return AC}catch(e){return null}}
+function tone(c,type,f0,f1,t0,d,v){var o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(f0,t0);if(f1!==f0)o.frequency.exponentialRampToValueAtTime(f1,t0+d);g.gain.setValueAtTime(0.0001,t0);g.gain.exponentialRampToValueAtTime(v,t0+0.02);g.gain.exponentialRampToValueAtTime(0.0001,t0+d);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+d+0.05)}
+function sonidoOk(){if(!sndOn)return;var c=ctx();if(!c)return;var t=c.currentTime;tone(c,'sine',320,1500,t,0.42,0.07);[1319,1760,2093].forEach(function(f,i){tone(c,'sine',f,f,t+0.42+i*0.07,0.9,0.09/(i+1))})}
+function sonidoNo(){if(!sndOn)return;var c=ctx();if(!c)return;var t=c.currentTime;tone(c,'triangle',210,130,t,0.3,0.12);tone(c,'sine',105,80,t,0.34,0.1)}
+function motionOk(){return !(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)}
+function destello(el){if(!motionOk()||!el||!el.animate)return;var r=el.getBoundingClientRect(),x=r.left+r.width/2,y=r.top+r.height/2,rise=Math.min(110,Math.max(60,r.top*0.4));
+ var d=document.createElement('div');d.setAttribute('aria-hidden','true');d.style.cssText='position:fixed;left:'+(x-5)+'px;top:'+(y-5)+'px;width:10px;height:10px;border-radius:50%;background:#F5B335;box-shadow:0 0 14px 6px rgba(245,179,53,.75);pointer-events:none;z-index:9999';document.body.appendChild(d);
+ var a=d.animate([{transform:'translateY(0) scale(.2)',opacity:0},{transform:'translateY(-'+(rise*.5)+'px) scale(1)',opacity:1,offset:.5},{transform:'translateY(-'+rise+'px) scale(1.1)',opacity:1}],{duration:420,easing:'ease-out',fill:'forwards'});
+ a.onfinish=function(){d.remove();for(var i=0;i<10;i++){var p=document.createElement('div'),ang=i/10*Math.PI*2,dist=34+Math.random()*18;p.setAttribute('aria-hidden','true');p.style.cssText='position:fixed;left:'+(x-3)+'px;top:'+(y-rise-3)+'px;width:6px;height:6px;border-radius:50%;background:'+(i%2?'#F5B335':'#FFE29A')+';pointer-events:none;z-index:9999';document.body.appendChild(p);var q=p.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+Math.cos(ang)*dist+'px,'+Math.sin(ang)*dist+'px) scale(.2)',opacity:0}],{duration:620,easing:'cubic-bezier(.2,.7,.3,1)',fill:'forwards'});q.onfinish=(function(n){return function(){n.remove()}})(p)}}}
+function sacudir(el){if(!motionOk()||!el||!el.animate)return;el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(-4px)'},{transform:'translateX(0)'}],{duration:300})}
+function acierto(el){sonidoOk();destello(el)}
+function fallo(el){sonidoNo();sacudir(el)}
+var sb=$('snd');function pintaSnd(){sb.textContent='Sonido: '+(sndOn?'activado':'silenciado');sb.setAttribute('aria-pressed',sndOn?'true':'false')}
+sb.addEventListener('click',function(){sndOn=!sndOn;try{localStorage.setItem('snd',sndOn?'1':'0')}catch(e){}pintaSnd();if(sndOn)sonidoOk()});pintaSnd();
+
+/* Memotest */
+var pairs=[["Carpintería","Mueble"],["Costura","Delantal"],["Huerta","Verduras"],["Cocina regional","Humita"],["Perfumería","Jabón artesanal"],["Informática","Currículum"]];
+var deck=[],open=[],lock=false,moves=0,found=0,board=$('board'),stat=$('stat'),msg=$('msg');
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+function paint(i){var c=deck[i],b=board.children[i];b.className='mc '+(c.s||'');b.textContent=c.s?c.t:'?';b.setAttribute('aria-label',c.s?c.t:'Carta oculta');b.disabled=c.s==='done'}
+function startMemo(){var cs=[];pairs.forEach(function(p,i){cs.push({id:i,t:p[0]});cs.push({id:i,t:p[1]})});deck=shuffle(cs);open=[];lock=false;moves=0;found=0;msg.hidden=true;stat.textContent='Intentos: 0';board.innerHTML=deck.map(function(c,i){return'<button type="button" class="mc" data-i="'+i+'" aria-label="Carta oculta">?</button>'}).join('')}
+board.addEventListener('click',function(e){var b=e.target.closest('.mc');if(!b||lock)return;var i=+b.dataset.i,c=deck[i];if(c.s)return;c.s='up';paint(i);open.push(i);if(open.length<2)return;moves++;stat.textContent='Intentos: '+moves;var a=open[0],d=open[1];
+ if(deck[a].id===deck[d].id){deck[a].s=deck[d].s='done';paint(a);paint(d);open=[];found++;acierto(board.children[d]);if(found===pairs.length){msg.hidden=false;msg.className='res ok';msg.textContent='¡Lo lograste en '+moves+' intentos!'}}
+ else{lock=true;fallo(board.children[a]);fallo(board.children[d]);setTimeout(function(){deck[a].s=deck[d].s='';paint(a);paint(d);open=[];lock=false},900)}});
+$('again').addEventListener('click',startMemo);startMemo();
+
+/* Trivia */
+var qs=[
+{q:"¿Qué sucede a los 18 años con los jóvenes de los hogares de protección?",o:["Egresan del sistema de cuidado","Empiezan la primaria","Pasan a otro hogar sin cambios","Reciben una casa propia"],a:0,e:"Al cumplir la mayoría de edad egresan del sistema, muchas veces sin red familiar ni recursos."},
+{q:"¿Qué taller combina el cultivo con la cocina regional?",o:["Costura","Huerta y gastronomía","Informática","Carpintería"],a:1,e:"En Huerta y gastronomía se cultivan verduras y se cocinan platos como empanadas, humitas y locro."},
+{q:"¿Qué documento resume tu formación y experiencia para buscar trabajo?",o:["El currículum","El menú","El plano","El recibo"],a:0,e:"El currículum es la carta de presentación para postularte a un empleo."},
+{q:"¿Cuál es el primer paso para armar un presupuesto personal?",o:["Comprar lo que se necesita","Anotar ingresos y gastos","Pedir un préstamo","Guardar todos los tickets sin mirarlos"],a:1,e:"Primero hay que saber cuánto entra y cuánto sale."},
+{q:"¿Qué significa aprovechar los alimentos de forma integral?",o:["Comprar más de lo necesario","Usar cada alimento entero para no desperdiciar","Cocinar solo con frituras","Comer siempre lo mismo"],a:1,e:"Se usan tallos, cáscaras y sobras en nuevas preparaciones."}];
+var qi=0,score=0,answered=false,quiz=$('quiz');
+function showQ(){var q=qs[qi];answered=false;quiz.innerHTML='<p class="muted">Pregunta '+(qi+1)+' de '+qs.length+'</p><h3>'+q.q+'</h3>'+q.o.map(function(t,i){return'<button type="button" class="opt" data-i="'+i+'">'+t+'</button>'}).join('')+'<div id="fb" aria-live="polite"></div>'}
+quiz.addEventListener('click',function(e){var b=e.target.closest('.opt');
+ if(b&&!answered){var q=qs[qi],i=+b.dataset.i;answered=true;if(i===q.a){score++;acierto(b)}else{fallo(b)}quiz.querySelectorAll('.opt').forEach(function(o,k){o.disabled=true;if(k===q.a)o.classList.add('ok');else if(k===i)o.classList.add('no')});$('fb').innerHTML='<p><strong>'+(i===q.a?'¡Correcto! ':'Casi. ')+'</strong>'+q.e+'</p><button type="button" class="btn go" id="next">'+(qi<qs.length-1?'Siguiente':'Ver resultado')+'</button>';$('next').focus();return}
+ if(e.target.id==='next'){qi++;if(qi<qs.length)showQ();else quiz.innerHTML='<h3>Terminaste: '+score+' de '+qs.length+' respuestas correctas</h3><p>Gracias por jugar y conocer Un Nuevo Comienzo.</p><button type="button" class="btn go" id="redo">Jugar de nuevo</button>'}
+ if(e.target.id==='redo'){qi=0;score=0;showQ()}});
+showQ();
+
+/* Logo animado de la portada */
+(function(){var v=$('logoVid'),b=$('logoBtn');if(!v||!b)return;b.addEventListener('click',function(){if(v.paused){if(v.ended)v.currentTime=0;v.muted=false;v.play().catch(function(){})}else v.pause()});
+v.addEventListener('play',function(){b.textContent='❚❚';b.setAttribute('aria-label','Pausar la animación del logo')});v.addEventListener('pause',function(){b.textContent='▶';b.setAttribute('aria-label','Reproducir la animación del logo con sonido')});v.addEventListener('ended',function(){b.textContent='↻';b.setAttribute('aria-label','Ver la animación de nuevo')})})();
+
+/* Letra de la canción resaltada */
+(function(){var a=$('song');if(!a)return;var ls=[].slice.call(document.querySelectorAll('#letra .ln')),T=ls.map(function(l){return parseFloat(l.dataset.t)}),cur=-1;
+function up(){var t=a.currentTime,k=-1;for(var i=0;i<T.length;i++){if(t>=T[i]-0.05)k=i}if(k!==cur){if(cur>=0)ls[cur].classList.remove('on');if(k>=0&&!a.paused)ls[k].classList.add('on');cur=k}}
+a.addEventListener('timeupdate',up);a.addEventListener('seeked',up);a.addEventListener('pause',function(){if(cur>=0)ls[cur].classList.remove('on')});a.addEventListener('play',function(){cur=-1;up()})})();
+
+/* Reloj de Salta */
+var hf=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Salta',hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+var df=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Salta',weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function tick(){var d=new Date();$('hora').textContent=hf.format(d);$('fecha').textContent=df.format(d)}tick();setInterval(tick,1000);
+
+/* Temporizador */
+var minEl=$('min'),cuenta=$('cuenta'),ini=$('ini'),fin=$('fin'),resto=1500,timer=null;
+function pinta(){var m=Math.floor(resto/60),s=resto%60;cuenta.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s}
+function parar(){clearInterval(timer);timer=null;ini.textContent='Empezar'}
+function fijar(){var v=Math.min(120,Math.max(1,parseInt(minEl.value,10)||25));resto=v*60;pinta()}
+minEl.addEventListener('change',function(){parar();fin.hidden=true;fijar()});
+ini.addEventListener('click',function(){if(timer){parar();ini.textContent='Seguir';return}if(resto<=0)fijar();fin.hidden=true;ini.textContent='Pausar';timer=setInterval(function(){resto--;pinta();if(resto<=0){parar();fin.hidden=false}},1000)});
+$('rei').addEventListener('click',function(){parar();fin.hidden=true;fijar()});
+
+/* Clima en Salta (Open-Meteo, sin clave) */
+var WX={0:'Despejado',1:'Mayormente despejado',2:'Parcialmente nublado',3:'Nublado',45:'Niebla',48:'Niebla',51:'Llovizna',53:'Llovizna',55:'Llovizna',61:'Lluvia leve',63:'Lluvia',65:'Lluvia fuerte',71:'Nieve',80:'Chubascos',81:'Chubascos',82:'Chubascos fuertes',95:'Tormenta',96:'Tormenta',99:'Tormenta'};
+function clima(){var t=$('clTemp'),x=$('clTxt'),d=$('clDet');x.textContent='Cargando el clima…';
+ fetch('https://api.open-meteo.com/v1/forecast?latitude=-24.7821&longitude=-65.4232&current=temperature_2m,apparent_temperature,relative_humidity_2m,wind_speed_10m,weather_code&daily=temperature_2m_max,temperature_2m_min&timezone=America%2FArgentina%2FSalta&forecast_days=1')
+ .then(function(r){if(!r.ok)throw 0;return r.json()}).then(function(j){var c=j.current,dd=j.daily;t.textContent=Math.round(c.temperature_2m)+'°C';x.textContent=(WX[c.weather_code]||'Clima actual')+' · sensación '+Math.round(c.apparent_temperature)+'°C';
+  d.textContent='Mín. '+Math.round(dd.temperature_2m_min[0])+'°C · Máx. '+Math.round(dd.temperature_2m_max[0])+'°C · Humedad '+c.relative_humidity_2m+'% · Viento '+Math.round(c.wind_speed_10m)+' km/h'})
+ .catch(function(){t.textContent='--°';x.textContent='No se pudo cargar el clima. Probá de nuevo.';d.textContent=''})}
+$('clBtn').addEventListener('click',clima);clima();
+</script>
+</body>
+</html>
